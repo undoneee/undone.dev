@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  shipments Shipment[]
+}
+
+model Courier {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  password  String
+  isAvailable Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  shipments Shipment[]
+}
+
+model Shipment {
+  id          Int      @id @default(autoincrement())
+  pickupAddress String
+  dropoffAddress String
+  status      String   @default("pending") // e.g., pending, assigned, in_transit, delivered, cancelled
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  customerId  Int
+  customer    User     @relation(fields: [customerId], references: [id])
+
+  courierId   Int?
+  courier     Courier? @relation(fields: [courierId], references: [id])
+}

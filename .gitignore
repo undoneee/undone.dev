@@ -1,0 +1,9 @@
+# Dependencies
+/node_modules
+
+# Environment variables
+.env
+
+# Prisma
+/prisma/dev.db
+/prisma/dev.db-journal

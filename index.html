@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojistik Uygulaması</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #555; }
+        input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Yeni Gönderi</h1>
+        <div class="input-group">
+            <label for="pickup">Alınacak Adres</label>
+            <input type="text" id="pickup" name="pickup" placeholder="Örn: Ev Adresim, Beşiktaş">
+        </div>
+        <div class="input-group">
+            <label for="dropoff">Teslim Edilecek Adres</label>
+            <input type="text" id="dropoff" name="dropoff" placeholder="Örn: İş Adresim, Kadıköy">
+        </div>
+        <button onclick="requestCourier()">Kurye Çağır</button>
+    </div>
+
+    <script>
+        function requestCourier() {
+            const pickup = document.getElementById('pickup').value;
+            const dropoff = document.getElementById('dropoff').value;
+            if (pickup && dropoff) {
+                alert('Kurye talebiniz alındı!\n\nAlınacak Adres: ' + pickup + '\nTeslim Edilecek Adres: ' + dropoff);
+            } else {
+                alert('Lütfen alınacak ve teslim edilecek adresleri girin.');
+            }
+        }
+    </script>
+</body>
+</html>
